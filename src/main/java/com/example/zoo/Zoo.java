@@ -1,12 +1,19 @@
 package com.example.zoo;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "Zoo")
 public class Zoo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Zoo;
     private String Name;
     private String Location;
     private boolean isClosed;
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Animal> animals;
 
     public Zoo(Integer Zoo, String Name, String Location, boolean isClosed, List animal) {
@@ -15,6 +22,10 @@ public class Zoo {
     this.Name=Name;
     this.Location=Location;
     this.isClosed=isClosed;
+    }
+
+    public Zoo() {
+
     }
 
     public boolean isClosed() {

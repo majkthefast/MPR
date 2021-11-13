@@ -5,26 +5,50 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/zoo")
 public class ZooRestController {
 
-    @GetMapping("/example")
-    public ResponseEntity<Zoo> getExampleZoo(){
-        Animal animal1 = new Animal(1,"insect",diet.MIXED,type.LAND,false,health.WOUNDED);
-        List<String> animals = List.of("instect");
-        Zoo zoo1 = new Zoo(1,"fajnezoo","gdansk",true,animals);
-        System.out.println(zoo1);
-        return ResponseEntity.ok(zoo1);
+    private final ZooService zooService;
+
+    public ZooRestController(ZooService zooService) {
+        this.zooService = zooService;
     }
+
+    @GetMapping("/example")
+    public ResponseEntity<Zoo> getExampleZoo() {
+        return ResponseEntity.ok(zooService.getExampleZoo());
+    }
+
     @GetMapping("/empty")
-    public ResponseEntity<Zoo> getEmptyZoo(){
-        Zoo zoo1 = new Zoo(1,"fajnezoo","gdansk",true,null);
-        System.out.println(zoo1);
-        return ResponseEntity.ok(zoo1);
+    public ResponseEntity<Zoo> getEmptyZoo() {
+        return ResponseEntity.ok(zooService.getEmptyZoo());
+    }
+
+    @GetMapping("/named")
+    public ResponseEntity<Zoo> getNamedZoo() {
+        return ResponseEntity.ok(zooService.getNamedZoo("Name"));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Zoo>> getWholeZoo() {
+        return ResponseEntity.ok(zooService.getWholeZoo());
+    }
+
+    //@GetMapping("/byid")
+    //public ResponseEntity getbyidZoo(){
+    //    return ResponseEntity.ok(zooService.getbyidZoo());
+    //}
+    @GetMapping("/1")
+    public ResponseEntity<List<Zoo>> getZoo1() {
+        return ResponseEntity.ok(zooService.getZoo1());
+    }
+
+    @GetMapping("/2")
+    public ResponseEntity<List<Zoo>> getZoo2() {
+        return ResponseEntity.ok(zooService.getZoo2());
     }
 
 }

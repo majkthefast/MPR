@@ -1,21 +1,33 @@
 package com.example.zoo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Animal")
 public class Animal {
+
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Integer Id;
     private String specimen;
-    protected diet Diet;
-    protected type Type;
+    private diet Diet;
+    private type Type;
     private boolean hunger;
     private health HP;
 
-    public Animal(Integer Id,String specimen, diet Diet, type Type, boolean hunger, health HP){
-        this.Id=Id;
-        this.specimen=specimen;
-        this.Diet=Diet;
-        this.Type=Type;
-        this.hunger=hunger;
-        this.HP=HP;
+    public Animal(Integer Id, String specimen, diet Diet, type Type, boolean hunger, health HP) {
+        this.Id = Id;
+        this.specimen = specimen;
+        this.Diet = Diet;
+        this.Type = Type;
+        this.hunger = hunger;
+        this.HP = HP;
     }
+
+    public Animal() {
+
+    }
+
 
     public boolean isHunger() {
         return hunger;
