@@ -2,6 +2,7 @@ package com.example.zoo;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,6 +50,10 @@ public class ZooRestController {
     @GetMapping("/2")
     public ResponseEntity<List<Zoo>> getZoo2() {
         return ResponseEntity.ok(zooService.getZoo2());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Zoo> getByID(@PathVariable Integer Zoo){
+        return ResponseEntity.ok(zooService.findByID(Zoo));
     }
 
 }
